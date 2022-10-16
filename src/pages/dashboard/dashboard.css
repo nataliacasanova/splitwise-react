@@ -1,0 +1,8 @@
+
+.main{
+    display: flex;
+    flex-direction: row;
+    gap:2vw;
+    flex-wrap:wrap;
+    padding: 10px;
+}

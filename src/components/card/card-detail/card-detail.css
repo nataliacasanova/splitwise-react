@@ -1,20 +1,22 @@
 :root {
-  --card-bg-color: white;
+  --card-bg-color: #fefefe;
 }
 
 .card {
+  font-family: Lato;
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  background: var(--card-bg-color);
+  background-color: var(--card-bg-color);
   padding: 20px;
   margin: 40px 32px 16px;
-  border-radius: 4px;
-  box-shadow: 0 4px 15px 0 rgb(82 101 112 / 15%);
   border: solid 1px #e8ebed;
+  border-radius: 6px;
+  box-shadow: 0px 8px 36px #222;
 }
 
 .card--title {
+  margin: 12px;
   display: flex;
   justify-content: center;
   font-family: 'Segoe UI', 'Ubuntu', 'Roboto', 'Open Sans', 'Helvetica Neue',
@@ -34,19 +36,25 @@
 }
 
 .card--body-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   margin-bottom: 0.5em;
   color: #444;
   font-weight: lighter;
+  align-items: center;
+  margin-right: 10px;
 }
 
-.card--body-item > input {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+.card--body-item > select {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #d6d1d5;
+  margin-top: 5px;
+  display: block;
   width: 100%;
+  height: 35px;
 }
-
-
 
 .card--buttons {
   display: flex;
@@ -56,7 +64,6 @@
 }
 
 .card--buttons > button {
-  min-width: 100%;
   cursor: pointer;
   margin-right: 0.25em;
   margin-top: 0.5em;
@@ -66,6 +73,7 @@
   background-color: #22223b;
   color: #fefefe;
 }
+
 button:hover {
   background-color: #4a4e69;
   color: #fefefe;

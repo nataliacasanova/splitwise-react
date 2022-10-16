@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { InputModel } from './input.model';
 import './input.css';
 
-const Input = (props: InputModel) => {
-  const { type, value, id, placeholder } = props || {};
-
+const Input = ({ type, id, placeholder, value, setValue, required }: any) => {
   return (
     <>
       <input
@@ -13,6 +10,8 @@ const Input = (props: InputModel) => {
         value={value}
         id={id}
         placeholder={placeholder}
+        onChange={(e) => setValue(e.target.value)}
+        required={required}
       ></input>
     </>
   );
