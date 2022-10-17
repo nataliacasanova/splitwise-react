@@ -32,8 +32,6 @@ const CardDetail = () => {
   };
 
   const handleSubmit = (event: any) => {
-    console.log(title, amount, description, date, person);
-
     event.preventDefault();
   };
 

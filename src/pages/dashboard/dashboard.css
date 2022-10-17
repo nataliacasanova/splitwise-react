@@ -1,8 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  flex-wrap: wrap;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-bottom: 1vw;
+  background-color: white;
+  border-radius: 1vw;
+  margin: 24px;
+}
 
-.main{
-    display: flex;
-    flex-direction: row;
-    gap:2vw;
-    flex-wrap:wrap;
-    padding: 10px;
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-content > .group-wrapper {
+  margin-right: 10px;
+}
+
+.title {
+  text-align: center;
+  font-family: Lato;
 }

@@ -1,7 +1,15 @@
 import * as React from 'react';
 import './input.css';
 
-const Input = ({ type, id, placeholder, value, setValue, required }: any) => {
+const Input = ({
+  type,
+  id,
+  placeholder,
+  value,
+  setValue,
+  required,
+  childToParent,
+}: any) => {
   return (
     <>
       <input

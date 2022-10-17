@@ -6,3 +6,6 @@ export interface GroupModel {
     transactions: CardModel[];
     id?: string;
 }
+
+
+export const CAFETERIA_USERS = ['Natalia', 'Maria', 'Pedro'];
