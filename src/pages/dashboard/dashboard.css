@@ -18,6 +18,9 @@
 .main-content {
   display: flex;
   flex-wrap: wrap;
+  max-width: 1200px;
+  min-height: 500px;
+  margin: auto;
 }
 
 .main-content > .group-wrapper {

@@ -135,5 +135,6 @@
     align-self: center;
     position: relative;
     display: flex;
+    justify-content: center;
 }
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BsFillPersonPlusFill, BsPersonCircle } from 'react-icons/bs';
 import { FaBalanceScale } from 'react-icons/fa';
-import { GrFormClose } from 'react-icons/gr';
 import { IoIosAddCircle } from 'react-icons/io';
 
 import Modal from 'react-modal';
@@ -11,9 +10,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../card/Card';
 import './group.css';
+import AddNewUser from '../add-new-user/AddNewUser';
 
 const Group = (props: GroupModel) => {
-  const [userList, setUserList] = useState(CAFETERIA_USERS);
+  const [userList] = useState(CAFETERIA_USERS);
   const [newUser, setNewUser] = useState('');
   const { name, transactions } = props;
   const [open, setOpen] = useState(false);
@@ -29,10 +29,9 @@ const Group = (props: GroupModel) => {
     setOpen(false);
   };
 
-  const addUser = () => {
-    setNewUser('');
-    userList.push(newUser);
-    console.log(userList);
+  const addUser = (value: string) => {
+    userList.push(value);
+    setNewUser(value);
   };
 
   return (
@@ -57,43 +56,20 @@ const Group = (props: GroupModel) => {
             </div>
           </div>
         </div>
-        {transactions?.map((transaction) => {
+        {transactions?.map((transaction, index) => {
           return (
             <>
-              <Card key={transaction.title} {...transaction}></Card>
+              <Card key={index} {...transaction}></Card>
             </>
           );
         })}
       </div>
       <Modal isOpen={open} onRequestClose={closeModal} className='modal'>
-        <div className='content'>
-          <>
-            <div className='modal-body'>
-              <div className='modal-header'>
-                <div className='modal-header-icon'>
-                  <BsPersonCircle />
-                </div>
-                <h2 className='modal-title'>Añadir persona</h2>
-              </div>
-              <div className='modal-content'>
-                {userList.map((user) => {
-                  return <p>{user}</p>;
-                })}
-              </div>
-              <div className='modal-action'>
-                <input
-                  value={newUser}
-                  onChange={(e) => setNewUser(e.target.value)}
-                  type='textarea'
-                ></input>
-                <button onClick={addUser}>Añadir</button>
-              </div>
-            </div>
-            <div className='modal-footer'>
-              <button onClick={closeModal}>Cerrar</button>
-            </div>
-          </>
-        </div>
+        <AddNewUser
+          arrayList={userList}
+          addUser={addUser}
+          closeModal={closeModal}
+        ></AddNewUser>
       </Modal>
     </>
   );

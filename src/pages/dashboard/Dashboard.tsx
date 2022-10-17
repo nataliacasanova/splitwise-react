@@ -26,11 +26,11 @@ const Dashboard = () => {
             ?.filter((element) =>
               element.name.toLowerCase().includes(data.toLowerCase())
             )
-            .map((element: GroupModel) => {
+            .map((element: GroupModel, index) => {
               return (
                 <>
                   <Group
-                    key={element?.name}
+                    key={index}
                     name={element?.name}
                     transactions={element?.transactions}
                   ></Group>
