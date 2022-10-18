@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BsPersonCircle } from 'react-icons/bs';
+import { Person } from '../../components/group/group.model';
 
 const AddNewUser = ({ arrayList, addUser, closeModal }: any) => {
   const [newUser, setNewUser] = useState('');
@@ -20,8 +21,8 @@ const AddNewUser = ({ arrayList, addUser, closeModal }: any) => {
             <h2 className='modal-title'>Añadir persona</h2>
           </div>
           <div className='modal-content'>
-            {arrayList.map((user: string) => {
-              return <p key={user}>{user}</p>;
+            {arrayList.map((user: Person, index: number) => {
+              return <p key={index}>{user.name}</p>;
             })}
           </div>
           <div className='modal-action'>

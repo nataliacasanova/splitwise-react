@@ -1,10 +1,16 @@
-import { CardModel } from "../card/card-detail/card-detail.model";
+import { CardModel } from "../../pages/card-detail/card-detail.model";
 
 
 export interface GroupModel {
     name: string;
     transactions: CardModel[];
-    id?: string;
+    id: number;
+    people: Person[];
+}
+
+export interface Person {
+    id: number;
+    name: string;
 }
 
 

@@ -1,0 +1,75 @@
+[
+  {
+    "id": 11,
+    "name": "Cafeteria",
+    "people": [
+      {
+        "id": 12,
+        "name": "Natalia"
+      },
+      {
+        "id": 13,
+        "name": "Pedro"
+      },
+      {
+        "id": 14,
+        "name": "Maria"
+      },
+      {
+        "id": 15,
+        "name": "Miguel"
+      }
+    ],
+    "transactions": [
+      {
+        "id": 16,
+        "description": "",
+        "amount": "1.95",
+        "title": "Bollo de chocolate",
+        "date": "12/10/2021",
+        "person": {
+          "id": 12,
+          "name": "Natalia"
+        }
+      },
+      {
+        "id": 17,
+        "description": "",
+        "amount": "1.10",
+        "title": "Café",
+        "date": "12/05/2021",
+        "person": {
+          "id": 15,
+          "name": "Miguel"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Supermercado",
+    "transactions": [
+      {
+        "id": 21,
+        "description": "",
+        "amount": "30",
+        "title": "Compra lunes",
+        "date": "12/10/2021",
+        "person": {
+          "id": 23,
+          "name": "Luna"
+        }
+      }
+    ],
+    "people": [
+      {
+        "id": 23,
+        "name": "Luna"
+      },
+      {
+        "id": 27,
+        "name": "Carla"
+      }
+    ]
+  }
+]

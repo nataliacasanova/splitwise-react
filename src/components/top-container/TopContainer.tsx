@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Input from '../../components/card/input/Input';
+import Input from '../card/input/Input';
 import './top-container.css';
 
-const TopContainer = ({ childToParent }: any) => {
+const TopContainer = ({ searchGroup }: any) => {
   const [search, setSearch] = useState('');
 
   const getValue = (value: string) => {
@@ -21,10 +21,7 @@ const TopContainer = ({ childToParent }: any) => {
           setValue={getValue}
         />
       </div>
-      <button
-        className='container-action'
-        onClick={() => childToParent(search)}
-      >
+      <button className='container-action' onClick={() => searchGroup(search)}>
         Buscar
       </button>
     </div>

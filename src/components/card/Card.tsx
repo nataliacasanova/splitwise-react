@@ -1,14 +1,24 @@
 import * as React from 'react';
-import { CardModel } from './card-detail/card-detail.model';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { CardModel } from '../../pages/card-detail/card-detail.model';
 import './card.css';
 import FilledBox from './filled-box/FilledBox';
 import OutlineBox from './outline-box/OutlineBox';
-import { useNavigate } from 'react-router-dom';
 
 const Card = (props: CardModel) => {
-  const { amount, person, title } = props || {};
+  const { amount, person, title, id } = props || {};
   const navigate = useNavigate();
+
+  const onClickDetail = () => {
+    navigate('/card-detail', {
+      state: {
+        ...props,
+        disabled: true,
+        operation: 'Detalle de gasto',
+      },
+    });
+  };
 
   return (
     <div className='card-wrapper'>
@@ -16,10 +26,10 @@ const Card = (props: CardModel) => {
         <p className='card-title'>{title}</p>
         <div className='card-body'>
           <FilledBox text={amount} />
-          <OutlineBox text={person} />
+          <OutlineBox text={person?.name} />
         </div>
       </div>
-      <div onClick={() => navigate('/card-detail', { state: props })}>
+      <div onClick={() => onClickDetail()}>
         <MdArrowForwardIos />
       </div>
     </div>

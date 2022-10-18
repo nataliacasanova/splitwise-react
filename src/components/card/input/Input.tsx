@@ -7,12 +7,13 @@ const Input = ({
   placeholder,
   value,
   setValue,
-  required,
-  childToParent,
+  required = true,
+  disabled = false,
 }: any) => {
   return (
     <>
       <input
+        disabled={disabled}
         className='input'
         type={type}
         value={value}

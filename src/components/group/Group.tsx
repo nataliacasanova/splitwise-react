@@ -1,27 +1,37 @@
 import * as React from 'react';
-import { BsFillPersonPlusFill, BsPersonCircle } from 'react-icons/bs';
+import { BsFillPersonPlusFill } from 'react-icons/bs';
 import { FaBalanceScale } from 'react-icons/fa';
 import { IoIosAddCircle } from 'react-icons/io';
 
 import Modal from 'react-modal';
-import { CAFETERIA_USERS, GroupModel } from './group.model';
+import { GroupModel } from './group.model';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AddNewUser from '../../pages/add-new-user/AddNewUser';
 import Card from '../card/Card';
 import './group.css';
-import AddNewUser from '../add-new-user/AddNewUser';
+import { CardModel } from '../../pages/card-detail/card-detail.model';
 
 const Group = (props: GroupModel) => {
-  const [userList] = useState(CAFETERIA_USERS);
+  const { name, transactions, people } = props || {};
+
+  const [userList] = useState(people);
   const [newUser, setNewUser] = useState('');
-  const { name, transactions } = props;
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   Modal.setAppElement('#root');
 
-  const openModal = (nameGrp: string) => {
+  const onClickDetail = () => {
+    navigate('/card-detail', {
+      state: {
+        options: people,
+      },
+    });
+  };
+
+  const openModal = () => {
     setOpen(true);
   };
 
@@ -30,7 +40,9 @@ const Group = (props: GroupModel) => {
   };
 
   const addUser = (value: string) => {
-    userList.push(value);
+    const index = people.length + 1;
+    const inputUser = { id: index, name: value };
+    userList.push(inputUser);
     setNewUser(value);
   };
 
@@ -43,12 +55,11 @@ const Group = (props: GroupModel) => {
             <div>
               <BsFillPersonPlusFill
                 onClick={() => {
-                  openModal(name);
+                  openModal();
                 }}
-                style={{ fontSize: '20px' }}
               />
             </div>
-            <div onClick={() => navigate('/card-detail')}>
+            <div onClick={() => onClickDetail()}>
               <IoIosAddCircle style={{ fontSize: '20px' }} />
             </div>
             <div>
@@ -56,7 +67,7 @@ const Group = (props: GroupModel) => {
             </div>
           </div>
         </div>
-        {transactions?.map((transaction, index) => {
+        {transactions?.map((transaction: CardModel, index) => {
           return (
             <>
               <Card key={index} {...transaction}></Card>
