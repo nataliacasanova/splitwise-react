@@ -16,6 +16,7 @@ const Card = (props: CardModel) => {
         ...props,
         disabled: true,
         operation: 'Detalle de gasto',
+        id,
       },
     });
   };

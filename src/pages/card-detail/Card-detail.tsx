@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from '../../components/card/input/Input';
-import { Person } from '../../components/group/group.model';
+import { GroupModel, Person } from '../../components/group/group.model';
 import Subheader from '../../components/subheader/Subheader';
+import GroupContext from '../../context/group.context';
 import './card-detail.css';
 
 const CardDetail = () => {
@@ -18,7 +20,9 @@ const CardDetail = () => {
   const [person, setPerson] = useState(props?.person || '');
   const [disabled] = useState(props?.disabled || false);
   const [operation] = useState(props?.operation || 'Añadir gasto');
-  const [arrayPerson, setArrayPerson] = useState(props?.options || []);
+  const [arrayPerson] = useState(props?.options || []);
+
+  const { groups, updateGroups } = useContext(GroupContext);
 
   const getTitle = (value: string) => {
     setTitle(value);
@@ -36,15 +40,31 @@ const CardDetail = () => {
     setDate(value);
   };
 
+  const setNewGroup = (gasto: any) => {
+    const currenGroupIndex = groups.findIndex(
+      (group: GroupModel) => group.id === props?.id
+    );
+
+    if (currenGroupIndex !== -1) {
+      groups[currenGroupIndex].transactions.push({
+        ...gasto,
+        id: groups[currenGroupIndex].transactions?.length + 1,
+      });
+    }
+
+    updateGroups(groups);
+    navigate('/');
+  };
+
   const handleSubmit = (event: any) => {
     const gasto = {
       amount,
       date,
       title,
       description,
-      person,
+      person: arrayPerson.find((el: Person) => el.name === person),
     };
-
+    setNewGroup(gasto);
     event.preventDefault();
   };
 
@@ -159,7 +179,6 @@ const CardDetail = () => {
           </div>
           <div className='card--buttons'>
             <button>Guardar Gasto</button>
-            <button>Eliminar Gasto</button>
           </div>
         </form>
       </div>

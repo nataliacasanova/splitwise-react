@@ -8,6 +8,3 @@ export interface CardModel {
     date: string;
     person: Person;
 }
-
-export const DIVISA = ['€', '$', '£', 'zł'];
-export const PERSONAS = ['Natalia', 'Maria', 'Pedro', 'Luis']

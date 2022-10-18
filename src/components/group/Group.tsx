@@ -9,24 +9,25 @@ import { GroupModel } from './group.model';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddNewUser from '../../pages/add-new-user/AddNewUser';
+import { CardModel } from '../../pages/card-detail/card-detail.model';
 import Card from '../card/Card';
 import './group.css';
-import { CardModel } from '../../pages/card-detail/card-detail.model';
 
 const Group = (props: GroupModel) => {
-  const { name, transactions, people } = props || {};
+  const { name, transactions, people, id } = props || {};
 
   const [userList] = useState(people);
-  const [newUser, setNewUser] = useState('');
+  const [, setNewUser] = useState('');
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   Modal.setAppElement('#root');
 
-  const onClickDetail = () => {
+  const onClickAddGasto = () => {
     navigate('/card-detail', {
       state: {
         options: people,
+        id,
       },
     });
   };
@@ -59,7 +60,7 @@ const Group = (props: GroupModel) => {
                 }}
               />
             </div>
-            <div onClick={() => onClickDetail()}>
+            <div onClick={() => onClickAddGasto()}>
               <IoIosAddCircle style={{ fontSize: '20px' }} />
             </div>
             <div>
