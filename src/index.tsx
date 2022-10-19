@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { enviroment } from './enviroment';
 import { GroupModel } from './components/group/group.model';
 import GroupContext from './context/group.context';
 import './index.css';
@@ -9,11 +10,11 @@ import Balance from './pages/balance/Balance';
 import CardDetail from './pages/card-detail/Card-detail';
 import Dashboard from './pages/dashboard/Dashboard';
 
-const App = () => {
+export const App = () => {
   const [groups, updateGroups] = useState([]);
 
   const getData = () => {
-    fetch('data.json', {
+    fetch(enviroment.host + enviroment.endpoints.GET_GROUPS, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

@@ -101,7 +101,7 @@ const Balance = () => {
                           item?.balance > 0 ? 'item-positive' : 'item-negative'
                         }
                       >
-                        {item?.balance}
+                        {item?.balance}€
                       </p>
                     </div>
                   </li>
