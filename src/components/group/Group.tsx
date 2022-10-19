@@ -12,12 +12,12 @@ import AddNewUser from '../../pages/add-new-user/AddNewUser';
 import { CardModel } from '../../pages/card-detail/card-detail.model';
 import Card from '../card/Card';
 import './group.css';
+import PersonListContext from '../../context/person.context';
 
 const Group = (props: GroupModel) => {
   const { name, transactions, people, id } = props || {};
 
-  const [userList] = useState(people);
-  const [, setNewUser] = useState('');
+  const [personList, updatePersonList] = useState(people);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -43,46 +43,47 @@ const Group = (props: GroupModel) => {
   const addUser = (value: string) => {
     const index = people.length + 1;
     const inputUser = { id: index, name: value };
-    userList.push(inputUser);
-    setNewUser(value);
+    personList.push(inputUser);
   };
 
   return (
     <>
-      <div className='group-wrapper'>
-        <div className='group-heading'>
-          <p className='group-name'>{name}</p>
-          <div className='group-heading-icons'>
-            <div>
-              <BsFillPersonPlusFill
-                onClick={() => {
-                  openModal();
-                }}
-              />
-            </div>
-            <div onClick={() => onClickAddGasto()}>
-              <IoIosAddCircle style={{ fontSize: '20px' }} />
-            </div>
-            <div>
-              <FaBalanceScale style={{ fontSize: '20px' }} />
+      <PersonListContext.Provider value={{ personList, updatePersonList }}>
+        <div className='group-wrapper'>
+          <div className='group-heading'>
+            <p className='group-name'>{name}</p>
+            <div className='group-heading-icons'>
+              <div>
+                <BsFillPersonPlusFill
+                  onClick={() => {
+                    openModal();
+                  }}
+                />
+              </div>
+              <div onClick={() => onClickAddGasto()}>
+                <IoIosAddCircle style={{ fontSize: '20px' }} />
+              </div>
+              <div>
+                <FaBalanceScale style={{ fontSize: '20px' }} />
+              </div>
             </div>
           </div>
+          {transactions?.map((transaction: CardModel, index) => {
+            return (
+              <>
+                <Card key={index} {...transaction}></Card>
+              </>
+            );
+          })}
         </div>
-        {transactions?.map((transaction: CardModel, index) => {
-          return (
-            <>
-              <Card key={index} {...transaction}></Card>
-            </>
-          );
-        })}
-      </div>
-      <Modal isOpen={open} onRequestClose={closeModal} className='modal'>
-        <AddNewUser
-          arrayList={userList}
-          addUser={addUser}
-          closeModal={closeModal}
-        ></AddNewUser>
-      </Modal>
+        <Modal isOpen={open} onRequestClose={closeModal} className='modal'>
+          <AddNewUser
+            arrayList={personList}
+            addUser={addUser}
+            closeModal={closeModal}
+          ></AddNewUser>
+        </Modal>
+      </PersonListContext.Provider>
     </>
   );
 };
