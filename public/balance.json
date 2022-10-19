@@ -1,0 +1,15 @@
+
+
+// people_payments
+{
+  "1": {"total": 50},
+  "2": {"total": 100},
+  "3": {"total": 100}
+}
+
+// transactions
+[
+  {"people": {"id": "1", "name": "Pepe"}, "amount": 100},
+  {"people": {"id": "2", "name": "Juan"}, "amount": 50}
+]
+

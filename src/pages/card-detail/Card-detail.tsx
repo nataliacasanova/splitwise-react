@@ -178,7 +178,7 @@ const CardDetail = () => {
             </label>
           </div>
           <div className='card--buttons'>
-            <button>Guardar Gasto</button>
+            <button disabled={disabled}>Guardar Gasto</button>
           </div>
         </form>
       </div>

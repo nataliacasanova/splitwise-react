@@ -29,7 +29,7 @@ const Dashboard = () => {
             .map((element: GroupModel, index: number) => {
               return (
                 <>
-                  <Group key={index} {...element}></Group>
+                  <Group key={index.toString()} {...element}></Group>
                 </>
               );
             })}

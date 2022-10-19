@@ -79,9 +79,17 @@ button:hover {
   color: #fefefe;
 }
 
+button[disabled]{
+  opacity: 50%;
+}  
+
+
 @media (min-width: 480px) {
   .card {
     max-width: 800px;
     align-items: center;
   }
 }
+
+
+

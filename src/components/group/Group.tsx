@@ -28,6 +28,7 @@ const Group = (props: GroupModel) => {
       state: {
         options: people,
         id,
+        disabled: false,
       },
     });
   };
@@ -63,7 +64,7 @@ const Group = (props: GroupModel) => {
               <div onClick={() => onClickAddGasto()}>
                 <IoIosAddCircle style={{ fontSize: '20px' }} />
               </div>
-              <div>
+              <div onClick={() => navigate(`/balance/${id}`)}>
                 <FaBalanceScale style={{ fontSize: '20px' }} />
               </div>
             </div>
@@ -71,7 +72,7 @@ const Group = (props: GroupModel) => {
           {transactions?.map((transaction: CardModel, index) => {
             return (
               <>
-                <Card key={index} {...transaction}></Card>
+                <Card key={index.toString()} {...transaction}></Card>
               </>
             );
           })}
