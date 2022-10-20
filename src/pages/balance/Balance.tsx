@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import BalanceList from '../../components/list/List';
 import Subheader from '../../components/subheader/Subheader';
 import GroupContext from '../../context/group.context';
 import { CardModel } from '../card-detail/card-detail.model';
