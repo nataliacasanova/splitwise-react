@@ -15,7 +15,7 @@ import './group.css';
 import PersonListContext from '../../context/person.context';
 
 const Group = (props: GroupModel) => {
-  const { name, transactions, people, id } = props || {};
+  const { name, transactions, people, id } = props ?? {};
 
   const [personList, updatePersonList] = useState(people);
   const [open, setOpen] = useState(false);

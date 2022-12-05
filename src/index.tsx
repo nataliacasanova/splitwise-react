@@ -11,7 +11,7 @@ import CardDetail from './pages/card-detail/Card-detail';
 import Dashboard from './pages/dashboard/Dashboard';
 
 export const App = () => {
-  const [groups, updateGroups] = useState([]);
+  const [groups, updateGroups] = useState<GroupModel[]>([]);
 
   const getData = () => {
     fetch(enviroment.host + enviroment.endpoints.GET_GROUPS, {
@@ -46,7 +46,7 @@ export const App = () => {
     </>
   );
 };
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(<App />);
 
 

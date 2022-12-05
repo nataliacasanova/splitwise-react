@@ -14,8 +14,10 @@
     padding-bottom: 1vw;
     background-color: white;
     border-radius: 1vw;
-    margin: 24px;
-    max-width: 1200px;
+    margin: auto;
+    margin-top: 60px;
+    max-width: 800px;
+    width: 100%;
 }
 
 .container > h2{
