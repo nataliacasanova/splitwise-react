@@ -1,0 +1,13 @@
+
+.outlinebox{
+    border: solid;
+    border-width: 1px;
+    border-color: #eee9ed;
+   
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.box-text{
+    margin:0;
+}

@@ -1,0 +1,99 @@
+:root {
+  --card-bg-color: #fefefe;
+}
+
+.card {
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  background-color: var(--card-bg-color);
+  padding: 20px;
+  margin: 40px 32px 16px;
+  border: solid 1px #e8ebed;
+  border-radius: 6px;
+  box-shadow: 0px 8px 36px #222;
+}
+
+.body{
+  margin-top: 60px;
+}
+
+.card--title {
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', 'Ubuntu', 'Roboto', 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 2em;
+  font-weight: lighter;
+  margin-top: 0.25em;
+  color: #222;
+  letter-spacing: 2px;
+}
+
+.card--body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  align-content: space-around;
+}
+
+.card--body-item {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  color: #444;
+  font-weight: lighter;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.card--body-item > select {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #d6d1d5;
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  height: 35px;
+}
+
+.card--buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.card--buttons > button {
+  cursor: pointer;
+  margin-right: 0.25em;
+  margin-top: 0.5em;
+  padding: 0.938em;
+  border: none;
+  border-radius: 4px;
+  background-color: #22223b;
+  color: #fefefe;
+}
+
+button:hover {
+  background-color: #4a4e69;
+  color: #fefefe;
+}
+
+button[disabled]{
+  opacity: 50%;
+}  
+
+
+@media (min-width: 480px) {
+  .card {
+    max-width: 800px;
+    align-items: center;
+  }
+}
+
+
+

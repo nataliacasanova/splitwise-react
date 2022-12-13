@@ -8,14 +8,11 @@ import { GroupModel } from './group.model';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddNewUser from '../../pages/add-new-user/AddNewUser';
-import { CardModel } from '../../pages/card-detail/card-detail.model';
 import Card from '../card/Card';
 import './group.css';
-import PersonListContext from '../../context/person.context';
-import { useCaseContainer } from '../../core/hooks/usesCasesContainer';
-import { AddNewPerson } from '../../feature/person/application/add-new-user';
-import { NewPerson } from '../../feature/person/domain/models/User';
+import PersonListContext from '../../../context/person.context';
+import AddNewUser from '../../../pages/add-new-user/AddNewUser';
+import { CardModel } from '../../../pages/card-detail/card-detail.model';
 
 const Group = (props: GroupModel) => {
   const { name, transactions, people, id } = props ?? {};
@@ -44,8 +41,10 @@ const Group = (props: GroupModel) => {
     setOpen(false);
   };
 
-  const addUser = (value: NewPerson) => {
-    useCaseContainer(AddNewPerson).execute(value)
+  const addUser = (value: string) => {
+    const index = people.length + 1;
+    const inputUser = { id: index, name: value };
+    personList.push(inputUser);
   };
 
   return (

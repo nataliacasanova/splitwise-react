@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Input from '../../components/card/input/Input';
-import { GroupModel, Person } from '../../components/group/group.model';
-import Subheader from '../../components/subheader/Subheader';
-import GroupContext from '../../context/group.context';
+import GroupContext from '../../../../context/group.context';
+import Input from '../../../../core/components/card/input/Input';
+import { Person } from '../../../../core/components/group/group.model';
+import Subheader from '../../../../core/components/subheader/Subheader';
+import { useCaseContainer } from '../../../../core/hooks/usesCasesContainer';
+import { AddExpense } from '../../application/add-expense';
+import { newExpense } from '../../domain/models/Expense';
 import './card-detail.css';
 
 const CardDetail = () => {
@@ -40,18 +42,8 @@ const CardDetail = () => {
     setDate(value);
   };
 
-  const setNewGroup = (gasto: any) => {
-    const currenGroupIndex = groups.findIndex(
-      (group: GroupModel) => group.id === props?.id
-    );
-
-    if (currenGroupIndex !== -1) {
-      groups[currenGroupIndex].transactions.push({
-        ...gasto,
-        id: groups[currenGroupIndex].transactions?.length + 1,
-      });
-    }
-
+  const setNewGroup = (gasto: newExpense) => {
+    useCaseContainer(AddExpense).execute(gasto);
     updateGroups(groups);
     navigate('/');
   };
