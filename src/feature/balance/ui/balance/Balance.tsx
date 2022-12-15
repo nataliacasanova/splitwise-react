@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Subheader from '../../components/subheader/Subheader';
-import { useGroupContext } from '../../context/group.context';
-import { CardModel } from '../card-detail/card-detail.model';
+import Subheader from '../../../../components/subheader/Subheader';
+import { useGroupContext } from '../../../../context/group.context';
+import { useCaseContainer } from '../../../../core/hooks/usesCasesContainer';
+import { CardModel } from '../../../../pages/card-detail/card-detail.model';
+import { GetGroupById } from '../../../groups/aplication/get-group-by-id';
+import { Group } from '../../../groups/domain/models/Group';
+import { GetBalanceById } from '../../application/get-balance-by-id';
+import { TotalBalance } from '../../domain/models/Balance';
 import './balance.css';
 
 const Balance = () => {
@@ -16,15 +21,10 @@ const Balance = () => {
   }, []);
 
   const getTransactions = () => {
-    const currentGroup = groups.find((group) => group?.id === Number(id));
+    const currentGroup: Group = useCaseContainer(GetGroupById).execute(id);
     if (currentGroup) {
-      const { transactions, people } = currentGroup || {};
-      const peoplePayments = createPeoplePayments([...people]);
-      const totalPayments = fillPayments(peoplePayments, transactions);
-      const totalPaid = getTotalPaidAmount(transactions);
-      const amountToPay = getAmountToPay(totalPaid, people?.length);
-      const totalBalance = getTotalBalance(totalPayments, amountToPay);
-      setBalance(getBalanceView(totalBalance));
+      const balance : TotalBalance[] = useCaseContainer(GetBalanceById).execute(currentGroup.id);
+      setBalance(balance);
     }
   };
 

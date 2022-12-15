@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BsFillPersonPlusFill } from 'react-icons/bs';
 import { FaBalanceScale } from 'react-icons/fa';
 import { IoIosAddCircle } from 'react-icons/io';
@@ -8,20 +7,19 @@ import { GroupModel } from './group.model';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGroupContext } from '../../context/group.context';
+import PersonListContext from '../../context/person.context';
 import AddNewUser from '../../pages/add-new-user/AddNewUser';
 import { CardModel } from '../../pages/card-detail/card-detail.model';
 import Card from '../card/Card';
 import './group.css';
-import PersonListContext from '../../context/person.context';
-import { useCaseContainer } from '../../core/hooks/usesCasesContainer';
-import { AddNewPerson } from '../../feature/person/application/add-new-user';
-import { NewPerson } from '../../feature/person/domain/models/User';
 
 const Group = (props: GroupModel) => {
   const { name, transactions, people, id } = props ?? {};
 
   const [personList, updatePersonList] = useState(people);
   const [open, setOpen] = useState(false);
+  const { groups, updateGroups } = useGroupContext();
   const navigate = useNavigate();
 
   Modal.setAppElement('#root');
@@ -36,7 +34,34 @@ const Group = (props: GroupModel) => {
     });
   };
 
-  const openModal = () => {
+
+  const setNewGroup = (group: any) => {
+    const currenGroupIndex = groups.findIndex(
+      (group: GroupModel) => group.name === props?.name
+    );
+
+    if (currenGroupIndex !== -1) {
+      groups[currenGroupIndex].transactions.push({
+        ...group,
+        id: groups[currenGroupIndex].transactions?.length + 1,
+      });
+    }
+
+    updateGroups(groups);
+    navigate('/');
+  };
+
+  const handleSubmit = (event: any) => {
+    const group: GroupModel = {
+      name: event,
+      transactions: [],
+      people: []
+    };
+    setNewGroup(group);
+    event.preventDefault();
+  };
+
+  const openModal =  ()=> {
     setOpen(true);
   };
 
@@ -44,8 +69,11 @@ const Group = (props: GroupModel) => {
     setOpen(false);
   };
 
-  const addUser = (value: NewPerson) => {
-    useCaseContainer(AddNewPerson).execute(value)
+  const addUser = (value: any) => {
+    const index = people.length + 1;
+    const inputUser = { id: index, name: value };
+    // useCaseContainer(AddNewPerson).execute(inputUser)
+    personList.push(inputUser);
   };
 
   return (
@@ -56,17 +84,17 @@ const Group = (props: GroupModel) => {
             <p className='group-name'>{name}</p>
             <div className='group-heading-icons'>
               <div>
-                <BsFillPersonPlusFill
+                <BsFillPersonPlusFill className='icon'
                   onClick={() => {
                     openModal();
                   }}
                 />
               </div>
               <div onClick={() => onClickAddGasto()}>
-                <IoIosAddCircle style={{ fontSize: '20px' }} />
+                <IoIosAddCircle className='icon' style={{ fontSize: '20px' }} />
               </div>
               <div onClick={() => navigate(`/balance/${id}`)}>
-                <FaBalanceScale style={{ fontSize: '20px' }} />
+                <FaBalanceScale className='icon'style={{ fontSize: '20px' }} />
               </div>
             </div>
           </div>

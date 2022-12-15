@@ -2,39 +2,39 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { enviroment } from './enviroment';
 import { GroupModel } from './components/group/group.model';
-import GroupContext from './context/group.context';
+import { GroupProvider, useGroupContext } from './context/group.context';
+import { enviroment } from './enviroment';
 import './index.css';
 import Balance from './pages/balance/Balance';
 import CardDetail from './pages/card-detail/Card-detail';
 import Dashboard from './pages/dashboard/Dashboard';
 
 export const App = () => {
-  const [groups, updateGroups] = useState<GroupModel[]>([]);
+  const {groups, updateGroups} = useGroupContext();
 
-  const getData = () => {
-    fetch(enviroment.host + enviroment.endpoints.GET_GROUPS, {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson: GroupModel[]) {
-        updateGroups(myJson);
-      });
-  };
+  // const getData = () => {
+  //   fetch(enviroment.host + enviroment.endpoints.GET_GROUPS, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
+  //     },
+  //   })
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (myJson: GroupModel[]) {
+  //       updateGroups(myJson);
+  //     });
+  // };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <>
-      <GroupContext.Provider value={{ groups, updateGroups }}>
+      <GroupProvider groups={groups}>
         <BrowserRouter>
           <Routes>
             <Route path='/card-detail' element={<CardDetail />} />
@@ -42,7 +42,7 @@ export const App = () => {
             <Route index path='/' element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
-      </GroupContext.Provider>
+      </GroupProvider>
     </>
   );
 };

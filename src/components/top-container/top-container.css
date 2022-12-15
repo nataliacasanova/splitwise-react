@@ -1,29 +1,62 @@
+.container-action {
+  cursor: pointer;
+  margin-right: 0.25em;
+  margin-top: 0.5em;
+  padding: 0.938em;
+  border: none;
+  border-radius: 4px;
+  background-color: #22223b;
+  color: #fefefe;
+}
 
-.container-action{
-    cursor: pointer;
-    margin-right: 0.25em;
-    margin-top: 0.5em;
-    padding: 0.938em;
-    border: none;
-    border-radius: 4px;
-    background-color: #22223b;
-    color: #fefefe;
+.modal-group {
+  position: absolute;
+  inset: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  max-width: 400px;
+  max-height: 250px;
+  margin: auto;
+}
+
+.body{
+  margin: 0;
+}
+
+.card {
+  background-color: #eee8f4;
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.search-container {
+  display: flex;
+}
+
+.group-container {
+  display: flex;
 }
 
 .container-action:hover {
-    background-color: #4a4e69;
-    color: #fefefe;
-  }
+  background-color: #4a4e69;
+  color: #fefefe;
+}
 
-  .top-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 10px;
-  }
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
 
-  .container-content{
-    display: flex;
-    margin-right: 4px;
-  }
-
+.container-content {
+  display: flex;
+  margin-right: 4px;
+}

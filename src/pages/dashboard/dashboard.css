@@ -29,7 +29,8 @@
 }
 
 .group-wrapper{
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
  @media(min-width: 520px) {

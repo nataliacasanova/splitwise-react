@@ -1,7 +1,6 @@
 import { Person } from "../../../person/domain/models/User";
 
 
-
 export interface Expense {
     id: number;
     description: string;

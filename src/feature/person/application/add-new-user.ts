@@ -1,4 +1,4 @@
-import { Person } from "../domain/models/User";
+import { NewPerson, Person } from "../domain/models/User";
 import { MockPersonRepository } from "../infrastructure/repositories/api-person-repository";
 
 export class AddNewPerson {
@@ -7,7 +7,7 @@ export class AddNewPerson {
         this.repository = repository;
     }
 
-    execute(user: Person) {
+    execute(user: NewPerson) {
         return this.repository.addUser(user);
     }
 }

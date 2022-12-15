@@ -1,11 +1,9 @@
 import { PersonRepository } from "../../domain/interfaces/UserRepository";
-import { Person } from "../../domain/models/User";
+import { NewPerson } from "../../domain/models/User";
 
 export class MockPersonRepository implements PersonRepository {
-    addUser(user: Person): void {
+    addUser(user: NewPerson): void {
         throw new Error("Method not implemented.");
     }
   
-    
-    
 }

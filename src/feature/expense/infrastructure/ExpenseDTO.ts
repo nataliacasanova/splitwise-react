@@ -1,3 +1,4 @@
+import { Person } from "../../../components/group/group.model";
 
 export interface ExpenseDTO {
     id: number;
@@ -5,5 +6,5 @@ export interface ExpenseDTO {
     amount: string;
     title: string;
     date: string;
-    person: any //@TODO define Person;
+    person: Person;
 }

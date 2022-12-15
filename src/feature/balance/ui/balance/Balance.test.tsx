@@ -1,6 +1,9 @@
 import React from 'react';
-import { GroupModel } from '../../components/group/group.model';
-import { GroupProvider } from '../../context/group.context';
+import { GroupProvider } from '../../../../context/group.context';
+
+import { GroupModel } from '../../../../core/components/group/group.model';
+
+
 import Balance from './Balance';
 
 const mockedUsedNavigate = jest.fn();
@@ -44,5 +47,5 @@ test('should render balance', () => {
     render(
     <Balance />
     );
-    </GroupProvider>
+  </GroupProvider>
 });

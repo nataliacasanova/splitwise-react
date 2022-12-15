@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { useContext } from 'react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from '../../components/card/input/Input';
 import { GroupModel, Person } from '../../components/group/group.model';
 import Subheader from '../../components/subheader/Subheader';
-import GroupContext from '../../context/group.context';
+import { useGroupContext } from '../../context/group.context';
 import './card-detail.css';
 
 const CardDetail = () => {
@@ -22,7 +20,7 @@ const CardDetail = () => {
   const [operation] = useState(props?.operation || 'Añadir gasto');
   const [arrayPerson] = useState(props?.options || []);
 
-  const { groups, updateGroups } = useContext(GroupContext);
+  const { groups, updateGroups } = useGroupContext();
 
   const getTitle = (value: string) => {
     setTitle(value);

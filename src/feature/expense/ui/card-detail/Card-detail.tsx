@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import GroupContext from '../../../../context/group.context';
+import { useGroupContext } from '../../../../context/group.context';
 import Input from '../../../../core/components/card/input/Input';
 import { Person } from '../../../../core/components/group/group.model';
 import Subheader from '../../../../core/components/subheader/Subheader';
@@ -24,7 +23,7 @@ const CardDetail = () => {
   const [operation] = useState(props?.operation || 'Añadir gasto');
   const [arrayPerson] = useState(props?.options || []);
 
-  const { groups, updateGroups } = useContext(GroupContext);
+  const { groups, updateGroups } = useGroupContext();
 
   const getTitle = (value: string) => {
     setTitle(value);
@@ -49,7 +48,7 @@ const CardDetail = () => {
   };
 
   const handleSubmit = (event: any) => {
-    const gasto = {
+    const gasto: newExpense = {
       amount,
       date,
       title,

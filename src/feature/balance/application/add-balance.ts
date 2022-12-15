@@ -1,13 +1,14 @@
+import { Balance } from "../domain/models/Balance";
 import { MockBalanceRepository } from "../infrastructure/repositories/api-balance-repository";
 
-export  class GetBalance {
+
+export  class AddBalance {
     repository: MockBalanceRepository;
     constructor(repository: MockBalanceRepository) {
         this.repository = repository;
     }
 
-    async execute() {
-      const balanceList = await this.repository.getBalanceList();
-      return balanceList;
+    execute(balance: Balance[]) {
+      return this.repository.addBalance(balance);
     }
 }
