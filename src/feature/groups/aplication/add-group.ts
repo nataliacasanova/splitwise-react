@@ -1,4 +1,5 @@
 import { GroupRepository } from "../domain/interfaces/GroupRepository";
+import { Group } from "../domain/models/Group";
 
 export class AddGroup {
     repository: GroupRepository;
@@ -7,7 +8,7 @@ export class AddGroup {
         this.repository = repository;
     }
 
-    execute(name: string) {
-        return this.repository.addGroup(name);
+    execute(newGroup: Group) {
+        return this.repository.addGroup(newGroup);
     }
 }

@@ -22,7 +22,7 @@ const Dashboard = () => {
     const currenGroupIndex = groups.findIndex(
       (element: GroupModel) => element.name === group?.name
     );
-    if (currenGroupIndex == -1) {
+    if (currenGroupIndex === -1) {
       groups.push(group);
       updateGroups(groups);
     }

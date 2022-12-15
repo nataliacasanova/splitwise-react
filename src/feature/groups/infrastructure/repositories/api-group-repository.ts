@@ -17,7 +17,7 @@ export class MockGroupRepository implements GroupRepository {
     async getGroupById(id: number): Promise<Group> {
         throw new Error("Method not implemented.");
     }
-    addGroup(name: string): void {
+    addGroup(newGroup: NewGroup): void {
         throw new Error("Method not implemented.");
     }
     
